@@ -1159,7 +1159,7 @@ public OnClientDisconnect(client)
 	g_bTmpBonusTimer[client] = g_bBonusTimer[client];
 
 	//Database	
-	if (IsValidClient(client) && !g_bRenaming)
+	if (IsValidClient(client) && !g_bRenaming && !g_bToStage[client] && !g_bToBonus[client] && !g_bToStart[client] && !g_bToGoto[client])
 	{
 		db_insertLastPosition(client,g_szMapName);
 		db_updatePlayerOptions(client);
