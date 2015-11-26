@@ -386,12 +386,16 @@ public Action:Command_ToStage(client, args)
 		if (stageZoneId>=0)
 		{
 			g_bToStage[client] = true;
+			Client_Stop(client, 0);
 			CreateTimer(1.0, timerAfterTele, client);
 
 			new	Float:positA[3];
 			new	Float:positB[3];
 			if (GetClientTeam(client) == 1 ||GetClientTeam(client) == 0)
 			{
+				g_specToStage[client] = true;
+				g_bRespawnPosition[client] = false;
+
 				TeamChangeActual(client, 0);
 
 				Array_Copy(g_mapZones[stageZoneId][PointA], positA, 3);
@@ -405,8 +409,7 @@ public Action:Command_ToStage(client, args)
 				g_fCurVelVec[client][0] = 0.0;
 				g_fCurVelVec[client][1] = 0.0;
 				g_fCurVelVec[client][2] = 0.0;
-				g_specToStage[client] = true;
-				g_bRespawnPosition[client] = false;
+
 			}
 			else
 			{
